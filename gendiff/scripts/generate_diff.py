@@ -12,14 +12,14 @@ def generate_diff(file_path1, file_path2):
   for key in all_keys:
       if key in file1 and key in file2:
           if file1[key] == file2[key]:
-              diff_output.append(f'  {key}: {file1[key]}')
+              diff_output.append(f'  {key}: {file1[key]}'.lower())
           else:
-              diff_output.append(f'- {key}: {file1[key]}')
-              diff_output.append(f'+ {key}: {file2[key]}')
+              diff_output.append(f'- {key}: {file1[key]}'.lower())
+              diff_output.append(f'+ {key}: {file2[key]}'.lower())
       elif key in file1:
-          diff_output.append(f'- {key}: {file1[key]}')
+          diff_output.append(f'- {key}: {file1[key]}'.lower())
       else:
-          diff_output.append(f'+ {key}: {file2[key]}')
+          diff_output.append(f'+ {key}: {file2[key]}'.lower())
 
   return '\n'.join(diff_output)
 
