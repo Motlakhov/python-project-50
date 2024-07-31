@@ -15,3 +15,6 @@ publish:
 
 package-install:
 	python3 -m pip install --user dist/*.whl
+
+test-coverage:
+	poetry run python3 -m pytest --cov-report xml --cov=test_files
