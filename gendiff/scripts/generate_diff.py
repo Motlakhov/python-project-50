@@ -1,14 +1,11 @@
 #!/usr/bin/env python3
 import json
 import yaml
+from gendiff.parser import parse_file 
 
 def generate_diff(file_path1, file_path2):
-  if file_path1.endswith and file_path2.endswith == 'json':
-    file1 = json.load(open(file_path1))
-    file2 = json.load(open(file_path2))
-  elif file_path1.endswith and file_path2.endswith == 'yml' or 'yaml':
-    file1 = yaml.load(open(file_path1))
-    file2 = yaml.load(open(file_path2))
+  file1 = parse_file(file_path1)
+  file2 = parse_file(file_path2)
 
   diff_output = []
 
