@@ -1,0 +1,10 @@
+__pycache__
+dist/
+.venv/
+.pytest_cache/
+.idea/
+.vscode/
+coverage/
+.coverage
+test-coverage-tool
+htmlcov/
