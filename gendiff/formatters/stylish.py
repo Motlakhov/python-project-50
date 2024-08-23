@@ -33,5 +33,5 @@ def make_stylish_result(diff, space_count=2):
     lines = []
     for key, inner_value in diff.items():
         if diff[key]['type'] == 'nested':
-            # stylish_value = make_stylish_result(inner_value, spaces_count + 4)
+            # stylish_value = make_stylish_result(inner_value, space_count + 4)
             # lines.append(f"{indent}{NONE}{key}: {stylish_value}")
