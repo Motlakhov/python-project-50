@@ -20,7 +20,7 @@ def to_str(value, space_cont=2):
         indent = SPACE * (space_count + 4)
         lines = []
         for key, inner_value in value.items():
-        formatted_value = to_str(inner_value, spaces_count + 4)
+        formatted_value = to_str(inner_value, space_count + 4)
         lines.append(f"{indent}{NONE}{key}: {formatted_value}")
         formatted_string = '\n'.join(lines)
     
