@@ -1,27 +1,32 @@
 #!/usr/bin/env python3
 import json
 import yaml
-from gendiff.parser import parse_file 
+from gendiff.parser import parse_file
+from gendiff.create_tree import build_diff
 
 def generate_diff(file_path1, file_path2):
   file1 = parse_file(file_path1)
   file2 = parse_file(file_path2)
 
-  diff_output = []
+  diff = build_diff(file1, file2)
 
-  all_keys = sorted(set(file1.keys()).union(set(file2.keys())))
+  return diff
 
-  for key in all_keys:
-      if key in file1 and key in file2:
-          if file1[key] == file2[key]:
-              diff_output.append(f'  {key}: {file1[key]}'.lower())
-          else:
-              diff_output.append(f'- {key}: {file1[key]}'.lower())
-              diff_output.append(f'+ {key}: {file2[key]}'.lower())
-      elif key in file1:
-          diff_output.append(f'- {key}: {file1[key]}'.lower())
-      else:
-          diff_output.append(f'+ {key}: {file2[key]}'.lower())
+#   diff_output = []
 
-  return '\n'.join(diff_output)
+#   all_keys = sorted(set(file1.keys()).union(set(file2.keys())))
 
+#   for key in all_keys:
+#       if key in file1 and key in file2:
+#           if file1[key] == file2[key]:
+#               diff_output.append(f'  {key}: {file1[key]}'.lower())
+#           else:
+#               diff_output.append(f'- {key}: {file1[key]}'.lower())
+#               diff_output.append(f'+ {key}: {file2[key]}'.lower())
+#       elif key in file1:
+#           diff_output.append(f'- {key}: {file1[key]}'.lower())
+#       else:
+#           diff_output.append(f'+ {key}: {file2[key]}'.lower())
+
+#   diff = '\n'.join(diff_output)
+#   return diff

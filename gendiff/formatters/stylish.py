@@ -1,37 +1,56 @@
 SPACE = " "
 ADD = "+ "
 DELETE = "- "
-NONE = "  "
 
-def to_str(value, space_cont=2):
+def to_str(value, space_count=2):
     if value is None:
         return 'null'
 
-    if isinstance(value, bool):
+    elif isinstance(value, bool):
         return str(value).lower()
 
-    if isinstance(value, (int, float)):
-        return str(value)
-
-    if isinstance(value, str):
-        return value
-  
-    if isinstance(value, dict):
+    elif isinstance(value, dict):
         indent = SPACE * (space_count + 4)
         lines = []
         for key, inner_value in value.items():
-        formatted_value = to_str(inner_value, space_count + 4)
-        lines.append(f"{indent}{NONE}{key}: {formatted_value}")
+            formatted_value = to_str(inner_value, space_count + 4)
+            lines.append(f"{indent}  {key}: {formatted_value}")
         formatted_string = '\n'.join(lines)
+        end_indent = SPACE * (space_count + 2)
+        return f'{{\n{formatted_string}\n{end_indent}}}'
+    else:
+        return f'{value}'
+
+
+def make_stylish_result(diff):
+    def _iter(diff, space_count = 2):
+        lines = []
     
-        return f'{{\n{formatted_string}\n{indent}}}'
-    return f'{value}'
+        for key, item in diff.items():
+            indent = SPACE * space_count
 
+            match item['type']:
+                case 'unchanged':
+                    current_value = to_str(item['old_value'], space_count)
+                    lines.append(f"{indent}  {key}: {current_value}")
+                case 'added':
+                    current_value = to_str(item['value'], space_count)
+                    lines.append(f"{indent}{ADD}{key}: {current_value}")
+                case 'deleted':
+                    current_value = to_str(item['value'], space_count)
+                    lines.append(f"{indent}{DELETE}{key}: {current_value}")
+                case 'modified':
+                    current_old_value = to_str(item['old_value'], space_count)
+                    current_new_value = to_str(item['new_value'], space_count)
+                    lines.append(f"{indent}{DELETE}{key}: {current_old_value}")
+                    lines.append(f"{indent}{ADD}{key}: {current_new_value}")
+                case 'nested':
+                    lines.append(f"{indent}  {key}: {_iter(item['children'], space_count + 4)}")
+                
 
-def make_stylish_result(diff, space_count=2):
-    indent = SPACE * space_count
-    lines = []
-    for key, inner_value in diff.items():
-        if diff[key]['type'] == 'nested':
-            # stylish_value = make_stylish_result(inner_value, space_count + 4)
-            # lines.append(f"{indent}{NONE}{key}: {stylish_value}")
+        formatted_string = '\n'.join(lines)
+        end_indent = ' ' * (space_count - 2)
+
+        return f'{{\n{formatted_string}\n{end_indent}}}'
+
+    return _iter(diff)

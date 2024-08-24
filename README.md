@@ -8,3 +8,5 @@
 step 5
 [![asciicast](https://asciinema.org/a/ROyWfNtMk4ediYCgFLXwCFqXx.svg)](https://asciinema.org/a/ROyWfNtMk4ediYCgFLXwCFqXx)
 
+step 6
+[![asciicast](https://asciinema.org/a/pQTjxYh4BnHnJu97hsTxzsO9K.svg)](https://asciinema.org/a/pQTjxYh4BnHnJu97hsTxzsO9K)
