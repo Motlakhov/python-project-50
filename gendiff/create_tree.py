@@ -38,5 +38,6 @@ def build_diff(data1, data2):
                 'old_value': value1
             }
         
+    # print("Generated diff:", diff)
     return diff
             

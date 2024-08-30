@@ -1,19 +1,38 @@
 import pytest
 from gendiff.scripts.generate_diff import generate_diff
 
-@pytest.mark.parametrize("file1, file2, expected_output", [
+@pytest.mark.parametrize("file1, file2, formatter, expected_output", [
     (
         "tests/fixtures/file1.json",  # Путь к первому файлу
         "tests/fixtures/file2.json",  # Путь ко второму файлу
-        'common: {\n      + follow: false\n        setting1: Value 1\n      - setting2: 200\n      - setting3: true\n      + setting3: null\n      + setting4: blah blah\n      + setting5: {\n            key5: value5\n        }\n        setting6: {\n            doge: {\n              - wow: \n              + wow: so much\n            }\n            key: value\n          + ops: vops\n        }\n    }\n    group1: {\n      - baz: bas\n      + baz: bars\n        foo: bar\n      - nest: {\n            key: value\n        }\n      + nest: str\n    }\n  - group2: {\n        abc: 12345\n        deep: {\n            id: 45\n        }\n    }\n  + group3: {\n        deep: {\n            id: {\n                number: 45\n            }\n        }\n        fee: 100500\n    }'
+        "stylish",
+        "tests/fixtures/expected_output_stylish.txt"
     ),
     (
-        "tests/fixtures/file1.yml",  # Путь к первому файлу
-        "tests/fixtures/file2.yml",  # Путь ко второму файлу
-        'common: {\n      + follow: false\n        setting1: Value 1\n      - setting2: 200\n      - setting3: true\n      + setting3: null\n      + setting4: blah blah\n      + setting5: {\n            key5: value5\n        }\n        setting6: {\n            doge: {\n              - wow: \n              + wow: so much\n            }\n            key: value\n          + ops: vops\n        }\n    }\n    group1: {\n      - baz: bas\n      + baz: bars\n        foo: bar\n      - nest: {\n            key: value\n        }\n      + nest: str\n    }\n  - group2: {\n        abc: 12345\n        deep: {\n            id: 45\n        }\n    }\n  + group3: {\n        deep: {\n            id: {\n                number: 45\n            }\n        }\n        fee: 100500\n    }'
+        "tests/fixtures/file1.yml",  
+        "tests/fixtures/file2.yml",  
+        "stylish",
+        "tests/fixtures/expected_output_stylish.txt"
+    ),
+    (
+        "tests/fixtures/file1.json",  
+        "tests/fixtures/file2.json",  
+        "plain",
+        "tests/fixtures/expected_output_plain.txt"
+    ),
+    (
+        "tests/fixtures/file1.yml", 
+        "tests/fixtures/file2.yml",  
+        "plain",
+        "tests/fixtures/expected_output_plain.txt"
     )
 ])
 
-def test_generate_diff(file1, file2, expected_output):
-    assert generate_diff(file1, file2) == expected_output
+def test_generate_diff(file1, file2, formatter, expected_output):
+    diff = generate_diff(file1, file2, formatter)
+    expected_result = read_file(expected_output)
+    assert diff == expected_result
 
+def read_file(file_name):
+    with open(file_name, 'r') as file:
+        return file.read().strip()
