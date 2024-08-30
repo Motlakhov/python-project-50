@@ -25,6 +25,18 @@ from gendiff.scripts.generate_diff import generate_diff
         "tests/fixtures/file2.yml",  
         "plain",
         "tests/fixtures/expected_output_plain.txt"
+    ),
+    (
+        "tests/fixtures/file1.json",  
+        "tests/fixtures/file2.json",  
+        "json",
+        "tests/fixtures/expected_output_json.txt"
+    ),
+    (
+        "tests/fixtures/file1.yml",  
+        "tests/fixtures/file2.yml",  
+        "json",
+        "tests/fixtures/expected_output_json.txt"
     )
 ])
 
