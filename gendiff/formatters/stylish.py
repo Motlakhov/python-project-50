@@ -4,7 +4,7 @@ DELETE = "- "
 
 
 def to_str(value, space_count=2):
-    
+
     if value is None:
         return 'null'
 
