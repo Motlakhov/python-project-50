@@ -8,16 +8,16 @@ def build_diff(data1, data2):
         value2 = data2.get(key)
 
         if key not in data1:
-          diff[key] = {
-              'type': 'added',
-              'value': value2  
-          }
-          
+            diff[key] = {
+                'type': 'added',
+                'value': value2
+            }
+
         elif key not in data2:
             diff[key] = {
                 'type': 'deleted',
                 'value': value1
-                } 
+            }
 
         elif isinstance(value1, dict) and isinstance(value2, dict):
             diff[key] = {
@@ -32,12 +32,10 @@ def build_diff(data1, data2):
                 'new_value': value2
             }
 
-        else: 
+        else:
             diff[key] = {
                 'type': 'unchanged',
                 'old_value': value1
             }
-        
-    # print("Generated diff:", diff)
+
     return diff
-            

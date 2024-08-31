@@ -2,6 +2,7 @@ SPACE = " "
 ADD = "+ "
 DELETE = "- "
 
+
 def to_str(value, space_count=2):
     if value is None:
         return 'null'
@@ -23,9 +24,9 @@ def to_str(value, space_count=2):
 
 
 def make_stylish_result(diff):
-    def _iter(diff, space_count = 2):
+    def _iter(diff, space_count=2):
         lines = []
-    
+
         for key, item in diff.items():
             indent = SPACE * space_count
 
@@ -45,8 +46,8 @@ def make_stylish_result(diff):
                     lines.append(f"{indent}{DELETE}{key}: {current_old_value}")
                     lines.append(f"{indent}{ADD}{key}: {current_new_value}")
                 case 'nested':
-                    lines.append(f"{indent}  {key}: {_iter(item['children'], space_count + 4)}")
-                
+                    lines.append(f'''{indent}  {key}:
+                                 {_iter(item['children'], space_count + 4)}''')
 
         formatted_string = '\n'.join(lines)
         end_indent = ' ' * (space_count - 2)
