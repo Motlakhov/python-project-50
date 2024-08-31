@@ -45,6 +45,7 @@ def test_generate_diff(file1, file2, formatter, expected_output):
     expected_result = read_file(expected_output)
     assert diff == expected_result
 
+
 def read_file(file_name):
     with open(file_name, 'r') as file:
         return file.read().strip()

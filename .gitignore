@@ -6,5 +6,6 @@ dist/
 .vscode/
 coverage/
 .coverage
+coverage.xml
 test-coverage-tool
 htmlcov/

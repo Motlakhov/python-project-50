@@ -8,7 +8,7 @@ def to_str(value):
     elif value is None:
         return 'null'
     elif isinstance(value, str):
-        return f"'{value}'"  # Добавляем кавычки к строкам
+        return f"'{value}'"
     else:
         return str(value)
 
@@ -29,12 +29,12 @@ def make_plain_result(diff):
                 case 'added':
                     current_value = to_str(item['value'])
                     if isinstance(item['value'], dict):
-                        lines.append(f"Property '{current_path}' was added \
-                                     with value: [complex value]")
+                        lines.append(f"Property '{current_path}' was added "
+                                     f"with value: [complex value]")
                     else:
                         current_value = to_str(item['value'])
-                        lines.append(f"Property '{current_path}' was added \
-                                     with value: {current_value}")
+                        lines.append(f"Property '{current_path}' was added "
+                                     f"with value: {current_value}")
                 case 'deleted':
                     lines.append(f"Property '{current_path}' was removed")
                 case 'modified':
@@ -45,7 +45,7 @@ def make_plain_result(diff):
                         old_value = '[complex value]'
                     if isinstance(item['new_value'], dict):
                         new_value = '[complex value]'
-                    lines.append(f"Property '{current_path}' was updated. \
-                                 From {old_value} to {new_value}")
+                    lines.append(f"Property '{current_path}' was updated. "
+                                 f"From {old_value} to {new_value}")
         return lines
     return '\n'.join(_iter(diff))
