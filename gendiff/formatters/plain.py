@@ -1,4 +1,4 @@
-def to_str(value):
+def checking_value(value):
     if isinstance(value, (bool, int)):
         return str(value).lower()
     if value is None:
@@ -24,19 +24,19 @@ def make_plain_result(diff):
                 case 'nested':
                     lines.extend(_iter(item["children"], current_path))
                 case 'added':
-                    current_value = to_str(item['value'])
+                    current_value = checking_value(item['value'])
                     if isinstance(item['value'], dict):
                         lines.append(f"Property '{current_path}' was added "
                                      f"with value: [complex value]")
                     else:
-                        current_value = to_str(item['value'])
+                        current_value = checking_value(item['value'])
                         lines.append(f"Property '{current_path}' was added "
                                      f"with value: {current_value}")
                 case 'deleted':
                     lines.append(f"Property '{current_path}' was removed")
                 case 'modified':
-                    old_value = to_str(item['old_value'])
-                    new_value = to_str(item['new_value'])
+                    old_value = checking_value(item['old_value'])
+                    new_value = checking_value(item['new_value'])
 
                     if isinstance(item['old_value'], dict):
                         old_value = '[complex value]'
