@@ -1,41 +1,41 @@
+from gendiff.constants import ADDED, DELETED, NESTED, MODIFIED, UNCHANGED
+
 def build_diff(data1, data2):
     diff = {}
 
     keys = sorted(data1.keys() | data2.keys())
 
     for key in keys:
-        value1 = data1.get(key)
-        value2 = data2.get(key)
 
         if key not in data1:
             diff[key] = {
-                'type': 'added',
-                'value': value2
+                'type': ADDED,
+                'value': data2[key]
             }
 
         elif key not in data2:
             diff[key] = {
-                'type': 'deleted',
-                'value': value1
+                'type': DELETED,
+                'value': data1[key]
             }
 
-        elif isinstance(value1, dict) and isinstance(value2, dict):
+        elif isinstance(data1[key], dict) and isinstance(data2[key], dict):
             diff[key] = {
-                'type': 'nested',
-                'children': build_diff(value1, value2)
+                'type': NESTED,
+                'children': build_diff(data1[key], data2[key])
             }
 
         elif value1 != value2:
             diff[key] = {
-                'type': 'modified',
-                'old_value': value1,
-                'new_value': value2
+                'type': MODIFIED,
+                'old_value': data1[key],
+                'new_value': data2[key]
             }
 
         else:
             diff[key] = {
-                'type': 'unchanged',
-                'old_value': value1
+                'type': UNCHANGED,
+                'old_value': data1[key]
             }
 
     return diff

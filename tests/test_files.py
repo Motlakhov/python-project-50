@@ -1,5 +1,5 @@
 import pytest
-from gendiff.scripts.generate_diff import generate_diff
+from gendiff.generate_diff import generate_diff
 
 
 @pytest.mark.parametrize("file1, file2, formatter, expected_output", [

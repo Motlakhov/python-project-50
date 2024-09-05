@@ -1,16 +1,13 @@
 def to_str(value):
-    if isinstance(value, dict) or isinstance(value, list):
-        return '[complex value]'
-    elif value is True:
-        return 'true'
-    elif value is False:
-        return 'false'
-    elif value is None:
+    if isinstance(value, (bool, int)):
+        return str(value).lower()
+    if value is None:
         return 'null'
-    elif isinstance(value, str):
-        return f"'{value}'"
-    else:
-        return str(value)
+    if isinstance(value, dict):
+        return '[complex value]'
+    
+    return f"'{value}'"
+    
 
 
 def make_plain_result(diff):

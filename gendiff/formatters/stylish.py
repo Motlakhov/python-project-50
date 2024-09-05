@@ -1,7 +1,7 @@
-SPACE = " "
-ADD = "+ "
-DELETE = "- "
-
+# Make indent with:
+# SPACE = " "
+# ADD = "+ "
+# DELETE = "- "
 
 def to_str(value, space_count=2):
 
@@ -12,13 +12,13 @@ def to_str(value, space_count=2):
         return str(value).lower()
 
     elif isinstance(value, dict):
-        indent = SPACE * (space_count + 4)
+        indent = " " * (space_count + 4)
         lines = []
         for key, inner_value in value.items():
             formatted_value = to_str(inner_value, space_count + 4)
             lines.append(f"{indent}  {key}: {formatted_value}")
         formatted_string = '\n'.join(lines)
-        end_indent = SPACE * (space_count + 2)
+        end_indent = " " * (space_count + 2)
         return f'{{\n{formatted_string}\n{end_indent}}}'
     else:
         return f'{value}'
@@ -29,7 +29,7 @@ def make_stylish_result(diff):
         lines = []
 
         for key, item in diff.items():
-            indent = SPACE * space_count
+            indent = " " * space_count
 
             match item['type']:
                 case 'unchanged':
@@ -37,15 +37,15 @@ def make_stylish_result(diff):
                     lines.append(f"{indent}  {key}: {current_value}")
                 case 'added':
                     current_value = to_str(item['value'], space_count)
-                    lines.append(f"{indent}{ADD}{key}: {current_value}")
+                    lines.append(f"{indent}'+ '{key}: {current_value}")
                 case 'deleted':
                     current_value = to_str(item['value'], space_count)
-                    lines.append(f"{indent}{DELETE}{key}: {current_value}")
+                    lines.append(f"{indent}'- '{key}: {current_value}")
                 case 'modified':
                     current_old_value = to_str(item['old_value'], space_count)
                     current_new_value = to_str(item['new_value'], space_count)
-                    lines.append(f"{indent}{DELETE}{key}: {current_old_value}")
-                    lines.append(f"{indent}{ADD}{key}: {current_new_value}")
+                    lines.append(f"{indent}'- '{key}: {current_old_value}")
+                    lines.append(f"{indent}'+ '{key}: {current_new_value}")
                 case 'nested':
                     lines.append(f"{indent}  {key}: "
                                  f"{_iter(item['children'], space_count + 4)}")
@@ -53,7 +53,7 @@ def make_stylish_result(diff):
                     pass
 
         formatted_string = '\n'.join(lines)
-        end_indent = ' ' * (space_count - 2)
+        end_indent = " " * (space_count - 2)
 
         return f'{{\n{formatted_string}\n{end_indent}}}'
 
