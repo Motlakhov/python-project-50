@@ -37,15 +37,15 @@ def make_stylish_result(diff):
                     lines.append(f"{indent}  {key}: {current_value}")
                 case 'added':
                     current_value = to_str(item['value'], space_count)
-                    lines.append(f"{indent}'+ '{key}: {current_value}")
+                    lines.append(f"{indent}+ {key}: {current_value}")
                 case 'deleted':
                     current_value = to_str(item['value'], space_count)
-                    lines.append(f"{indent}'- '{key}: {current_value}")
+                    lines.append(f"{indent}- {key}: {current_value}")
                 case 'modified':
                     current_old_value = to_str(item['old_value'], space_count)
                     current_new_value = to_str(item['new_value'], space_count)
-                    lines.append(f"{indent}'- '{key}: {current_old_value}")
-                    lines.append(f"{indent}'+ '{key}: {current_new_value}")
+                    lines.append(f"{indent}- {key}: {current_old_value}")
+                    lines.append(f"{indent}+ {key}: {current_new_value}")
                 case 'nested':
                     lines.append(f"{indent}  {key}: "
                                  f"{_iter(item['children'], space_count + 4)}")

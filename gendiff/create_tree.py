@@ -25,7 +25,7 @@ def build_diff(data1, data2):
                 'children': build_diff(data1[key], data2[key])
             }
 
-        elif value1 != value2:
+        elif data1[key] != data2[key]:
             diff[key] = {
                 'type': MODIFIED,
                 'old_value': data1[key],

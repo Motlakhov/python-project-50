@@ -11,8 +11,7 @@ def generate_diff(file_path1, file_path2, formatter='stylish'):
     diff = build_diff(file1, file2)
 
     if isinstance(formatter, str):
-        formatter_func = FORMATTERS[formatter]
-    else:
-        formatter_func = formatter
+        formatter = FORMATTERS[formatter]
+    diff = formatter(diff)
 
-    return formatter_func(diff)
+    return diff
