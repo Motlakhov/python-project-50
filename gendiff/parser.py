@@ -2,9 +2,11 @@ import yaml
 import json
 
 
-def parse_file(filepath):
-    if filepath.endswith('.json'):
-        file = json.load(open(filepath))
-    elif filepath.endswith(('.yml', '.yaml')):
-        file = yaml.safe_load(open(filepath))
-    return file
+def parse(data, extension):
+    match extension:
+        case '.json':
+            return json.load(data)
+        case '.yml' | '.yaml':
+            return yaml.safe_load(data)
+        case _:
+            raise ValueError(f'Unsupported extension: {extension}')

@@ -11,11 +11,11 @@
                 "old_value": "Value 1"
             },
             "setting2": {
-                "type": "deleted",
+                "type": "removed",
                 "value": 200
             },
             "setting3": {
-                "type": "modified",
+                "type": "updated",
                 "old_value": true,
                 "new_value": null
             },
@@ -36,7 +36,7 @@
                         "type": "nested",
                         "children": {
                             "wow": {
-                                "type": "modified",
+                                "type": "updated",
                                 "old_value": "",
                                 "new_value": "so much"
                             }
@@ -58,7 +58,7 @@
         "type": "nested",
         "children": {
             "baz": {
-                "type": "modified",
+                "type": "updated",
                 "old_value": "bas",
                 "new_value": "bars"
             },
@@ -67,7 +67,7 @@
                 "old_value": "bar"
             },
             "nest": {
-                "type": "modified",
+                "type": "updated",
                 "old_value": {
                     "key": "value"
                 },
@@ -76,7 +76,7 @@
         }
     },
     "group2": {
-        "type": "deleted",
+        "type": "removed",
         "value": {
             "abc": 12345,
             "deep": {

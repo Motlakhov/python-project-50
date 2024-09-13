@@ -1,22 +1,11 @@
-from gendiff.formatters.stylish import make_stylish_result
-from gendiff.formatters.plain import make_plain_result
-from gendiff.formatters.json import make_json_result
+from collections import namedtuple
 
+_FORMAT_VALUES = ('stylish', 'plain', 'json')
+FORMATS = namedtuple('FormatChoices',
+                     map(str.upper, _FORMAT_VALUES))(*_FORMAT_VALUES)
 
-FORMATTERS = {
-    'stylish': make_stylish_result,
-    'plain': make_plain_result,
-    'json': make_json_result
-}
+_TYPE_VALUES = ('removed', 'added', 'nested', 'updated', 'unchanged')
+CHANGES_TYPES = namedtuple('FormatTypes',
+                           map(str.upper, _TYPE_VALUES))(*_TYPE_VALUES)
 
-# DIFF_TYPES
-ADDED = 'added',
-DELETED = 'deleted',
-NESTED = 'nested',
-MODIFIED = 'modified',
-UNCHANGED = 'unchanged'
-
-# Make indent with:
-SPACE = " "
-ADD = "+ "
-DELETE = "- "
+INDENT = '    '

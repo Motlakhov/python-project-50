@@ -1,4 +1,5 @@
 import argparse
+from gendiff.constants import FORMATS
 
 
 def get_args():
@@ -7,8 +8,8 @@ def get_args():
     parser.add_argument('first_file', type=str, help='')
     parser.add_argument('second_file', type=str, help='')
     parser.add_argument('-f', '--format',
-                        help='set format of output',
                         default='stylish',
-                        choices=['stylish', 'plain', 'json'])
-    
+                        help=f'select format of output from '
+                             f'[{", ".join(FORMATS)}]')
+
     return parser.parse_args()
