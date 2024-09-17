@@ -1,3 +1,4 @@
+from gendiff.constants import CHANGES_TYPES
 
 
 def build_indent(depth):
@@ -39,21 +40,21 @@ def to_stylish(diff):
             indent = build_indent(depth)
 
             match item['type']:
-                case 'unchanged':
+                case CHANGES_TYPES.UNCHANGED:
                     current_value = to_string(item['old_value'], depth)
                     lines.append(f"{indent}  {key}: {current_value}")
-                case 'added':
+                case CHANGES_TYPES.ADDED:
                     current_value = to_string(item['value'], depth)
                     lines.append(f"{indent}+ {key}: {current_value}")
-                case 'removed':
+                case CHANGES_TYPES.REMOVED:
                     current_value = to_string(item['value'], depth)
                     lines.append(f"{indent}- {key}: {current_value}")
-                case 'updated':
+                case CHANGES_TYPES.UPDATED:
                     current_old_value = to_string(item['old_value'], depth)
                     current_new_value = to_string(item['new_value'], depth)
                     lines.append(f"{indent}- {key}: {current_old_value}")
                     lines.append(f"{indent}+ {key}: {current_new_value}")
-                case 'nested':
+                case CHANGES_TYPES.NESTED:
                     lines.append(
                                 f"{indent}  {key}: "
                                 f"{_iter_stylish(item['children'], depth + 2)}"
