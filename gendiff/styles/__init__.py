@@ -13,5 +13,4 @@ def format_diff(data, style):
         case FORMATS.JSON:
             return to_json(data)
         case _:
-            raise ValueError(f'Unknown format: {style}, '
-                             f' please choose from [{", ".join(FORMATS)}]')
+            raise ValueError(f'Unknown format: {style}')
