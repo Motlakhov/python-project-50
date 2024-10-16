@@ -55,10 +55,8 @@ def to_stylish(diff):
                     lines.append(f"{indent}- {key}: {current_old_value}")
                     lines.append(f"{indent}+ {key}: {current_new_value}")
                 case CHANGES_TYPES.NESTED:
-                    lines.append(
-                                f"{indent}  {key}: "
-                                f"{_iter_stylish(item['children'], depth + 2)}"
-                                )
+                    lines.append(f"{indent}  {key}: "
+                                 f"{_iter_stylish(item['children'], depth+2)}")
                 case _:
                     raise ValueError(f'Unknown type: {item["type"]}')
 
