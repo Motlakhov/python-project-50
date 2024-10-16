@@ -58,7 +58,7 @@ def to_stylish(diff):
                     lines.append(
                         f"{indent}  {key}: "
                         f"{_iter_stylish(item['children'], depth + 2)}"
-                        )
+                    )
                 case _:
                     raise ValueError(f'Unknown type: {item["type"]}')
 
