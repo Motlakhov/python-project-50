@@ -91,16 +91,23 @@ make lint
 
 The project uses GitHub Actions for automated testing and linting. You can see the status of the last commit at the top of this README.
 
+step 1
+
 [![asciicast](https://asciinema.org/a/0s0j4OFtmy2EgGbFygqQSYWkd.svg)](https://asciinema.org/a/0s0j4OFtmy2EgGbFygqQSYWkd)
 
-step 5
+
+step 2
+
 [![asciicast](https://asciinema.org/a/ROyWfNtMk4ediYCgFLXwCFqXx.svg)](https://asciinema.org/a/ROyWfNtMk4ediYCgFLXwCFqXx)
 
-step 6
+step 3
+
 [![asciicast](https://asciinema.org/a/pQTjxYh4BnHnJu97hsTxzsO9K.svg)](https://asciinema.org/a/pQTjxYh4BnHnJu97hsTxzsO9K)
 
-step 7
+step 4
+
 [![asciicast](https://asciinema.org/a/BxIKumQdKnBzbjYtnRBK7xfkc.svg)](https://asciinema.org/a/BxIKumQdKnBzbjYtnRBK7xfkc)
 
-step 8
+step 5
+
 [![asciicast](https://asciinema.org/a/PuNbAKrWqMCKjynSa37wLGqzz.svg)](https://asciinema.org/a/PuNbAKrWqMCKjynSa37wLGqzz)
